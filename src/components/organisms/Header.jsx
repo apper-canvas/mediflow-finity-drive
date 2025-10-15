@@ -1,61 +1,59 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import React from "react";
 import ApperIcon from "@/components/ApperIcon";
-import Staff from "@/components/pages/Staff";
-import Button from "@/components/atoms/Button";
-import SearchBar from "@/components/molecules/SearchBar";
 
-const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-
+function Header() {
   const navItems = [
-    { name: "Dashboard", path: "/", icon: "LayoutDashboard" },
-    { name: "Patients", path: "/patients", icon: "Users" },
-    { name: "Appointments", path: "/appointments", icon: "Calendar" },
-    { name: "Staff", path: "/staff", icon: "UserCheck" }
+    { path: '/', label: 'Dashboard', icon: 'LayoutDashboard' },
+    { path: '/patients', label: 'Patients', icon: 'Users' },
+    { path: '/appointments', label: 'Appointments', icon: 'Calendar' },
+    { path: '/prescriptions', label: 'Prescriptions', icon: 'FileText' },
+    { path: '/invoices', label: 'Invoices', icon: 'Receipt' },
+    { path: '/staff', label: 'Staff', icon: 'UserCog' },
   ];
 
-  const isActive = (path) => {
-    if (path === "/" && location.pathname === "/") return true;
-    if (path !== "/" && location.pathname.startsWith(path)) return true;
-    return false;
-  };
-
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-<div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
-                <ApperIcon name="Activity" size={20} className="text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                HealthCare
-              </span>
-            </Link>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
+              <ApperIcon name="Heart" size={24} className="text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">MediFlow</h1>
+              <p className="text-xs text-gray-600">Healthcare Management</p>
+            </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-4">
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
+              <NavLink
+                key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  isActive(item.path)
-                    ? "text-primary bg-blue-50"
-                    : "text-gray-600 hover:text-primary hover:bg-gray-50"
-                }`}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'bg-primary text-white'
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`
+                }
               >
-                <ApperIcon name={item.icon} size={16} />
-                <span>{item.name}</span>
-              </Link>
+                <ApperIcon name={item.icon} size={18} />
+                {item.label}
+              </NavLink>
             ))}
           </nav>
 
+<div className="flex items-center gap-2">
+            <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+              <ApperIcon name="Bell" size={20} />
+            </button>
+            <button className="flex items-center gap-2 p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+              <ApperIcon name="User" size={20} />
+            </button>
+          </div>
+        </div>
           {/* Search Bar (Desktop) */}
           <div className="hidden lg:block">
             <SearchBar

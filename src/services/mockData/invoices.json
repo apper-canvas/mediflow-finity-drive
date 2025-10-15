@@ -1,0 +1,309 @@
+[
+  {
+    "Id": 1,
+    "InvoiceNumber": "INV-00001",
+    "PatientId": 1,
+    "PatientName": "John Doe",
+    "IssueDate": "2024-01-05",
+    "DueDate": "2024-02-04",
+    "TotalAmount": 450.00,
+    "AmountPaid": 450.00,
+    "BalanceDue": 0.00,
+    "Status": "Paid",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "General Consultation",
+        "Quantity": 1,
+        "Rate": 150.00,
+        "Amount": 150.00
+      },
+      {
+        "Id": 2,
+        "Description": "Blood Test - Complete Panel",
+        "Quantity": 1,
+        "Rate": 200.00,
+        "Amount": 200.00
+      },
+      {
+        "Id": 3,
+        "Description": "X-Ray - Chest",
+        "Quantity": 1,
+        "Rate": 100.00,
+        "Amount": 100.00
+      }
+    ],
+    "Payments": [
+      {
+        "Id": 1,
+        "Date": "2024-01-15",
+        "Amount": 450.00,
+        "PaymentMethod": "Credit Card",
+        "Notes": "Full payment received"
+      }
+    ],
+    "Notes": "Routine checkup and preventive care"
+  },
+  {
+    "Id": 2,
+    "InvoiceNumber": "INV-00002",
+    "PatientId": 2,
+    "PatientName": "Jane Smith",
+    "IssueDate": "2024-01-10",
+    "DueDate": "2024-02-09",
+    "TotalAmount": 850.00,
+    "AmountPaid": 500.00,
+    "BalanceDue": 350.00,
+    "Status": "Partial",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "Specialist Consultation - Cardiology",
+        "Quantity": 1,
+        "Rate": 300.00,
+        "Amount": 300.00
+      },
+      {
+        "Id": 2,
+        "Description": "ECG Test",
+        "Quantity": 1,
+        "Rate": 150.00,
+        "Amount": 150.00
+      },
+      {
+        "Id": 3,
+        "Description": "Stress Test",
+        "Quantity": 1,
+        "Rate": 400.00,
+        "Amount": 400.00
+      }
+    ],
+    "Payments": [
+      {
+        "Id": 1,
+        "Date": "2024-01-12",
+        "Amount": 500.00,
+        "PaymentMethod": "Insurance",
+        "Notes": "Partial insurance coverage"
+      }
+    ],
+    "Notes": "Cardiac evaluation follow-up required"
+  },
+  {
+    "Id": 3,
+    "InvoiceNumber": "INV-00003",
+    "PatientId": 3,
+    "PatientName": "Robert Johnson",
+    "IssueDate": "2024-01-15",
+    "DueDate": "2024-02-14",
+    "TotalAmount": 325.00,
+    "AmountPaid": 0.00,
+    "BalanceDue": 325.00,
+    "Status": "Pending",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "Follow-up Consultation",
+        "Quantity": 1,
+        "Rate": 125.00,
+        "Amount": 125.00
+      },
+      {
+        "Id": 2,
+        "Description": "Prescription Medications",
+        "Quantity": 2,
+        "Rate": 100.00,
+        "Amount": 200.00
+      }
+    ],
+    "Payments": [],
+    "Notes": "Diabetes management follow-up"
+  },
+  {
+    "Id": 4,
+    "InvoiceNumber": "INV-00004",
+    "PatientId": 4,
+    "PatientName": "Emily Davis",
+    "IssueDate": "2023-12-20",
+    "DueDate": "2024-01-19",
+    "TotalAmount": 675.00,
+    "AmountPaid": 0.00,
+    "BalanceDue": 675.00,
+    "Status": "Overdue",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "Emergency Room Visit",
+        "Quantity": 1,
+        "Rate": 500.00,
+        "Amount": 500.00
+      },
+      {
+        "Id": 2,
+        "Description": "CT Scan",
+        "Quantity": 1,
+        "Rate": 175.00,
+        "Amount": 175.00
+      }
+    ],
+    "Payments": [],
+    "Notes": "Payment overdue - follow-up required"
+  },
+  {
+    "Id": 5,
+    "InvoiceNumber": "INV-00005",
+    "PatientId": 5,
+    "PatientName": "Michael Brown",
+    "IssueDate": "2024-01-18",
+    "DueDate": "2024-02-17",
+    "TotalAmount": 950.00,
+    "AmountPaid": 950.00,
+    "BalanceDue": 0.00,
+    "Status": "Paid",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "Physical Therapy Session",
+        "Quantity": 5,
+        "Rate": 120.00,
+        "Amount": 600.00
+      },
+      {
+        "Id": 2,
+        "Description": "Orthopedic Consultation",
+        "Quantity": 1,
+        "Rate": 250.00,
+        "Amount": 250.00
+      },
+      {
+        "Id": 3,
+        "Description": "MRI Scan - Knee",
+        "Quantity": 1,
+        "Rate": 100.00,
+        "Amount": 100.00
+      }
+    ],
+    "Payments": [
+      {
+        "Id": 1,
+        "Date": "2024-01-20",
+        "Amount": 950.00,
+        "PaymentMethod": "Debit Card",
+        "Notes": "Full payment at discharge"
+      }
+    ],
+    "Notes": "Post-surgery rehabilitation treatment"
+  },
+  {
+    "Id": 6,
+    "InvoiceNumber": "INV-00006",
+    "PatientId": 1,
+    "PatientName": "John Doe",
+    "IssueDate": "2024-01-22",
+    "DueDate": "2024-02-21",
+    "TotalAmount": 225.00,
+    "AmountPaid": 0.00,
+    "BalanceDue": 225.00,
+    "Status": "Pending",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "Annual Health Checkup",
+        "Quantity": 1,
+        "Rate": 175.00,
+        "Amount": 175.00
+      },
+      {
+        "Id": 2,
+        "Description": "Vaccination - Flu Shot",
+        "Quantity": 1,
+        "Rate": 50.00,
+        "Amount": 50.00
+      }
+    ],
+    "Payments": [],
+    "Notes": "Routine annual preventive care"
+  },
+  {
+    "Id": 7,
+    "InvoiceNumber": "INV-00007",
+    "PatientId": 6,
+    "PatientName": "Sarah Wilson",
+    "IssueDate": "2024-01-25",
+    "DueDate": "2024-02-24",
+    "TotalAmount": 1250.00,
+    "AmountPaid": 750.00,
+    "BalanceDue": 500.00,
+    "Status": "Partial",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "Minor Surgery - Procedure",
+        "Quantity": 1,
+        "Rate": 800.00,
+        "Amount": 800.00
+      },
+      {
+        "Id": 2,
+        "Description": "Anesthesia",
+        "Quantity": 1,
+        "Rate": 250.00,
+        "Amount": 250.00
+      },
+      {
+        "Id": 3,
+        "Description": "Post-op Care",
+        "Quantity": 1,
+        "Rate": 200.00,
+        "Amount": 200.00
+      }
+    ],
+    "Payments": [
+      {
+        "Id": 1,
+        "Date": "2024-01-26",
+        "Amount": 750.00,
+        "PaymentMethod": "Insurance",
+        "Notes": "Insurance covered 60% of procedure"
+      }
+    ],
+    "Notes": "Surgical procedure with follow-up care"
+  },
+  {
+    "Id": 8,
+    "InvoiceNumber": "INV-00008",
+    "PatientId": 7,
+    "PatientName": "David Martinez",
+    "IssueDate": "2024-01-28",
+    "DueDate": "2024-02-27",
+    "TotalAmount": 400.00,
+    "AmountPaid": 0.00,
+    "BalanceDue": 400.00,
+    "Status": "Pending",
+    "Items": [
+      {
+        "Id": 1,
+        "Description": "Dental Consultation",
+        "Quantity": 1,
+        "Rate": 150.00,
+        "Amount": 150.00
+      },
+      {
+        "Id": 2,
+        "Description": "Dental Cleaning",
+        "Quantity": 1,
+        "Rate": 125.00,
+        "Amount": 125.00
+      },
+      {
+        "Id": 3,
+        "Description": "X-Ray - Dental",
+        "Quantity": 1,
+        "Rate": 125.00,
+        "Amount": 125.00
+      }
+    ],
+    "Payments": [],
+    "Notes": "Routine dental care and preventive treatment"
+  }
+]
