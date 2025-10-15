@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import patientService from "@/services/api/patientService";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
-import Card from "@/components/atoms/Card";
+import { Card } from "@/components/atoms/Card";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 
