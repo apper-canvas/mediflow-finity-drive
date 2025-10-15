@@ -8,6 +8,7 @@ import Loading from '@/components/ui/Loading';
 import Error from '@/components/ui/Error';
 import Empty from '@/components/ui/Empty';
 import ApperIcon from '@/components/ApperIcon';
+import DoctorDialog from '@/components/molecules/DoctorDialog';
 import staffService from '@/services/api/staffService';
 
 function Doctors() {
@@ -17,7 +18,13 @@ function Doctors() {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState('All');
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  async function handleDoctorAdded() {
+    setLoading(true);
+    await loadDoctors();
+    setLoading(false);
+  }
   useEffect(() => {
     loadDoctors();
   }, []);
@@ -74,8 +81,8 @@ function Doctors() {
     toast.info(`Viewing details for Dr. ${doctor.name}`);
   }
 
-  function handleAddDoctor() {
-    toast.info('Add new doctor functionality');
+function handleAddDoctor() {
+    setIsDialogOpen(true);
   }
 
   if (loading) {
@@ -102,13 +109,19 @@ function Doctors() {
             Manage medical staff and their schedules
           </p>
         </div>
-        <Button
+<Button
           onClick={handleAddDoctor}
           icon="UserPlus"
           className="w-full sm:w-auto"
         >
           Add Doctor
         </Button>
+
+        <DoctorDialog
+          isOpen={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+          onDoctorAdded={handleDoctorAdded}
+        />
       </div>
 
       <Card>
@@ -158,7 +171,7 @@ function Doctors() {
           </div>
         </CardContent>
       </Card>
-    </div>
+</div>
   );
 }
 
