@@ -23,11 +23,19 @@ class PatientService {
 
   async create(patient) {
     await this.delay();
-    const newPatient = {
+const newPatient = {
       ...patient,
       Id: Math.max(...this.patients.map(p => p.Id)) + 1,
       registrationDate: new Date().toISOString().split("T")[0],
-      status: "Active"
+      status: "Active",
+      height: patient.height || "",
+      weight: patient.weight || "",
+      allergies: patient.allergies || [],
+      existingConditions: patient.existingConditions || [],
+      currentMedications: patient.currentMedications || [],
+      pastSurgeries: patient.pastSurgeries || [],
+      familyHistory: patient.familyHistory || "",
+      primaryPhysician: patient.primaryPhysician || ""
     };
     this.patients.push(newPatient);
     return { ...newPatient };
@@ -37,7 +45,18 @@ async update(id, patientData) {
     await this.delay();
     const index = this.patients.findIndex(p => p.Id === parseInt(id));
     if (index !== -1) {
-      this.patients[index] = { ...this.patients[index], ...patientData };
+      this.patients[index] = {
+        ...this.patients[index],
+        ...patientData,
+        height: patientData.height || this.patients[index].height || "",
+        weight: patientData.weight || this.patients[index].weight || "",
+        allergies: patientData.allergies || this.patients[index].allergies || [],
+        existingConditions: patientData.existingConditions || this.patients[index].existingConditions || [],
+        currentMedications: patientData.currentMedications || this.patients[index].currentMedications || [],
+        pastSurgeries: patientData.pastSurgeries || this.patients[index].pastSurgeries || [],
+        familyHistory: patientData.familyHistory || this.patients[index].familyHistory || "",
+        primaryPhysician: patientData.primaryPhysician || this.patients[index].primaryPhysician || ""
+      };
       return { ...this.patients[index] };
     }
     return null;

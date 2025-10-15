@@ -121,7 +121,7 @@ const age = new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear
             <CardTitle>Patient Information</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-sm font-medium text-gray-500 mb-1">Date of Birth</h3>
                 <p className="text-base text-gray-900">
@@ -136,6 +136,18 @@ const age = new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear
                 <h3 className="text-sm font-medium text-gray-500 mb-1">Blood Type</h3>
                 <p className="text-base text-gray-900 font-medium">{patient.bloodType}</p>
               </div>
+              {patient.height && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-1">Height</h3>
+                  <p className="text-base text-gray-900">{patient.height}</p>
+                </div>
+              )}
+              {patient.weight && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-1">Weight</h3>
+                  <p className="text-base text-gray-900">{patient.weight}</p>
+                </div>
+              )}
               <div>
                 <h3 className="text-sm font-medium text-gray-500 mb-1">Phone</h3>
                 <p className="text-base text-gray-900">{patient.phone}</p>
@@ -183,42 +195,158 @@ const age = new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear
         </Card>
       </div>
 
-      {patient.medicalHistory && patient.medicalHistory.length > 0 && (
+{/* Allergies & Current Medications */}
+      {(patient.allergies?.length > 0 || patient.currentMedications?.length > 0) && (
         <Card>
           <CardHeader>
-            <CardTitle>Medical History</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <ApperIcon name="AlertCircle" size={20} />
+              Allergies & Current Medications
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {patient.medicalHistory.map((history, index) => (
-                <div
-                  key={index}
-                  className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg"
-                >
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <ApperIcon name="FileText" size={20} className="text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium text-gray-900">{history.condition}</h4>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Diagnosed: {format(new Date(history.diagnosedDate), 'MMMM d, yyyy')}
-                    </p>
-                    <div className="mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {patient.allergies?.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-2">Allergies</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {patient.allergies.map((allergy, index) => (
                       <span
-                        className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
-                          history.status === 'active'
-                            ? 'bg-warning/10 text-warning'
-                            : history.status === 'resolved'
-                            ? 'bg-success/10 text-success'
-                            : 'bg-gray-100 text-gray-600'
-                        }`}
+                        key={index}
+                        className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-error/10 text-error"
                       >
-                        {history.status}
+                        {allergy}
                       </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              ))}
+              )}
+              {patient.currentMedications?.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-2">Current Medications</h3>
+                  <ul className="space-y-1">
+                    {patient.currentMedications.map((medication, index) => (
+                      <li key={index} className="text-sm text-gray-900 flex items-start">
+                        <ApperIcon name="Pill" size={16} className="mr-2 mt-0.5 text-primary" />
+                        {medication}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Medical History & Conditions */}
+      {(patient.medicalHistory?.length > 0 || patient.existingConditions?.length > 0 || patient.pastSurgeries?.length > 0) && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <ApperIcon name="FileText" size={20} />
+              Medical History
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {patient.existingConditions?.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-2">Existing Medical Conditions</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {patient.existingConditions.map((condition, index) => (
+                      <span
+                        key={index}
+                        className="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-warning/10 text-warning"
+                      >
+                        {condition}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {patient.medicalHistory?.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-3">Condition Details</h3>
+                  <div className="space-y-4">
+                    {patient.medicalHistory.map((history, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg"
+                      >
+                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                          <ApperIcon name="FileText" size={20} className="text-primary" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-gray-900">{history.condition}</h4>
+                          <p className="text-sm text-gray-500 mt-1">
+                            Diagnosed: {format(new Date(history.diagnosedDate), 'MMMM d, yyyy')}
+                          </p>
+                          <div className="mt-2">
+                            <span
+                              className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                                history.status === 'Active'
+                                  ? 'bg-warning/10 text-warning'
+                                  : history.status === 'Resolved'
+                                  ? 'bg-success/10 text-success'
+                                  : 'bg-gray-100 text-gray-600'
+                              }`}
+                            >
+                              {history.status}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {patient.pastSurgeries?.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-2">Past Surgeries</h3>
+                  <ul className="space-y-1">
+                    {patient.pastSurgeries.map((surgery, index) => (
+                      <li key={index} className="text-sm text-gray-900 flex items-start">
+                        <ApperIcon name="Activity" size={16} className="mr-2 mt-0.5 text-primary" />
+                        {surgery}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Family History & Primary Care */}
+      {(patient.familyHistory || patient.primaryPhysician) && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <ApperIcon name="Users" size={20} />
+              Family History & Primary Care
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {patient.familyHistory && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-2">Family Medical History</h3>
+                  <p className="text-base text-gray-900">{patient.familyHistory}</p>
+                </div>
+              )}
+              {patient.primaryPhysician && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 mb-2">Primary Physician</h3>
+                  <div className="flex items-center gap-2">
+                    <ApperIcon name="Stethoscope" size={16} className="text-primary" />
+                    <p className="text-base text-gray-900 font-medium">{patient.primaryPhysician}</p>
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>

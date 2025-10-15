@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import patientService from "@/services/api/patientService";
-import Button from "@/components/atoms/Button";
-import Input from "@/components/atoms/Input";
 import { Card } from "@/components/atoms/Card";
+import patientService from "@/services/api/patientService";
+import ApperIcon from "@/components/ApperIcon";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
+import Button from "@/components/atoms/Button";
+import Input from "@/components/atoms/Input";
 
 const PatientForm = () => {
   const { id } = useParams();
@@ -27,7 +28,15 @@ const [formData, setFormData] = useState({
     bloodType: "",
     address: "",
     emergencyContact: "",
-    emergencyPhone: ""
+    emergencyPhone: "",
+    height: "",
+    weight: "",
+    allergies: "",
+    existingConditions: "",
+    currentMedications: "",
+    pastSurgeries: "",
+    familyHistory: "",
+    primaryPhysician: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -52,7 +61,15 @@ setFormData({
         bloodType: patient.bloodType || "",
         address: patient.address || "",
         emergencyContact: patient.emergencyContact || "",
-        emergencyPhone: patient.emergencyPhone || ""
+        emergencyPhone: patient.emergencyPhone || "",
+        height: patient.height || "",
+        weight: patient.weight || "",
+        allergies: Array.isArray(patient.allergies) ? patient.allergies.join(", ") : "",
+        existingConditions: Array.isArray(patient.existingConditions) ? patient.existingConditions.join(", ") : "",
+        currentMedications: Array.isArray(patient.currentMedications) ? patient.currentMedications.join(", ") : "",
+        pastSurgeries: Array.isArray(patient.pastSurgeries) ? patient.pastSurgeries.join(", ") : "",
+        familyHistory: patient.familyHistory || "",
+        primaryPhysician: patient.primaryPhysician || ""
       });
     } catch (err) {
       setError("Failed to load patient details. Please try again.");
@@ -79,7 +96,7 @@ setFormData({
   };
 
   const validateForm = () => {
-    const newErrors = {};
+const newErrors = {};
 
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
@@ -105,13 +122,14 @@ setFormData({
       newErrors.gender = "Gender is required";
     }
 
-if (!formData.bloodType.trim()) {
+    if (!formData.bloodType.trim()) {
       newErrors.bloodType = "Blood type is required";
     }
 
     if (!formData.address.trim()) {
       newErrors.address = "Address is required";
     }
+
     if (!formData.emergencyContact.trim()) {
       newErrors.emergencyContact = "Emergency contact name is required";
     }
@@ -334,6 +352,170 @@ if (!formData.bloodType.trim()) {
                   <p className="text-error text-sm mt-1">{errors.address}</p>
                 )}
               </div>
+            </div>
+          </div>
+{/* Physical Information Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <ApperIcon name="Activity" size={20} />
+              Physical Information
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Height
+                </label>
+                <Input
+                  name="height"
+                  value={formData.height}
+                  onChange={handleInputChange}
+                  placeholder="e.g., 5'8&quot; or 173cm"
+                  className={errors.height ? "border-red-500" : ""}
+                />
+                {errors.height && (
+                  <p className="mt-1 text-sm text-red-500">{errors.height}</p>
+                )}
+              </div>
+<div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Weight
+                </label>
+                <Input
+                  name="weight"
+                  value={formData.weight}
+                  onChange={handleInputChange}
+                  placeholder="e.g., 150 lbs or 68 kg"
+                  className={errors.weight ? "border-red-500" : ""}
+                />
+                {errors.weight && (
+                  <p className="mt-1 text-sm text-red-500">{errors.weight}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Allergies & Medications Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <ApperIcon name="AlertCircle" size={20} />
+              Allergies & Current Medications
+            </h3>
+            <div className="space-y-4">
+<div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Allergies
+                  <span className="text-gray-500 text-xs ml-2">(Separate multiple with commas)</span>
+                </label>
+                <Input
+                  name="allergies"
+                  value={formData.allergies}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Penicillin, Shellfish, Latex"
+                  className={errors.allergies ? "border-red-500" : ""}
+                />
+                {errors.allergies && (
+                  <p className="mt-1 text-sm text-red-500">{errors.allergies}</p>
+                )}
+              </div>
+<div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Current Medications
+                  <span className="text-gray-500 text-xs ml-2">(Separate multiple with commas)</span>
+                </label>
+                <Input
+                  name="currentMedications"
+                  value={formData.currentMedications}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Lisinopril 10mg, Metformin 500mg"
+                  className={errors.currentMedications ? "border-red-500" : ""}
+                />
+                {errors.currentMedications && (
+                  <p className="mt-1 text-sm text-red-500">{errors.currentMedications}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Medical History Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <ApperIcon name="FileText" size={20} />
+              Medical History
+            </h3>
+            <div className="space-y-4">
+<div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Existing Medical Conditions
+                  <span className="text-gray-500 text-xs ml-2">(Separate multiple with commas)</span>
+                </label>
+                <Input
+                  name="existingConditions"
+                  value={formData.existingConditions}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Hypertension, Diabetes, Asthma"
+                  className={errors.existingConditions ? "border-red-500" : ""}
+                />
+                {errors.existingConditions && (
+                  <p className="mt-1 text-sm text-red-500">{errors.existingConditions}</p>
+                )}
+              </div>
+<div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Past Surgeries
+                  <span className="text-gray-500 text-xs ml-2">(Separate multiple with commas)</span>
+                </label>
+                <Input
+                  name="pastSurgeries"
+                  value={formData.pastSurgeries}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Appendectomy (2015), Knee Surgery (2020)"
+                  className={errors.pastSurgeries ? "border-red-500" : ""}
+                />
+                {errors.pastSurgeries && (
+                  <p className="mt-1 text-sm text-red-500">{errors.pastSurgeries}</p>
+                )}
+              </div>
+<div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Family Medical History
+                </label>
+                <textarea
+                  name="familyHistory"
+                  value={formData.familyHistory}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Mother: Hypertension, Father: Diabetes"
+                  rows={3}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+                    errors.familyHistory ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.familyHistory && (
+                  <p className="mt-1 text-sm text-red-500">{errors.familyHistory}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Primary Care Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <ApperIcon name="Stethoscope" size={20} />
+              Primary Care
+            </h3>
+<div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Primary Doctor / Physician
+              </label>
+              <Input
+                name="primaryPhysician"
+                value={formData.primaryPhysician}
+                onChange={handleInputChange}
+                placeholder="e.g., Dr. John Smith"
+                className={errors.primaryPhysician ? "border-red-500" : ""}
+              />
+              {errors.primaryPhysician && (
+                <p className="mt-1 text-sm text-red-500">{errors.primaryPhysician}</p>
+              )}
             </div>
           </div>
 
