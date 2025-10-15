@@ -6,11 +6,12 @@ import Button from "@/components/atoms/Button";
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navItems = [
+const navItems = [
     { path: '/', label: 'Dashboard', icon: 'LayoutDashboard' },
     { path: '/patients', label: 'Patients', icon: 'Users' },
     { path: '/appointments', label: 'Appointments', icon: 'Calendar' },
     { path: '/prescriptions', label: 'Prescriptions', icon: 'FileText' },
+    { path: '/doctors', label: 'Doctors', icon: 'Stethoscope' },
     { path: '/invoices', label: 'Invoices', icon: 'Receipt' },
     { path: '/staff', label: 'Staff', icon: 'UserCog' },
   ];
