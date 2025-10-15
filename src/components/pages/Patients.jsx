@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import patientService from "@/services/api/patientService";
+import Loading from "@/components/ui/Loading";
+import Empty from "@/components/ui/Empty";
+import Error from "@/components/ui/Error";
+import Button from "@/components/atoms/Button";
 import SearchBar from "@/components/molecules/SearchBar";
 import PatientTable from "@/components/organisms/PatientTable";
-import Button from "@/components/atoms/Button";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import Empty from "@/components/ui/Empty";
-import patientService from "@/services/api/patientService";
 
 const Patients = () => {
   const [patients, setPatients] = useState([]);
@@ -40,7 +40,7 @@ const Patients = () => {
       return;
     }
 
-    try {
+try {
       const searchResults = await patientService.search(query);
       setFilteredPatients(searchResults);
     } catch (err) {
@@ -52,7 +52,6 @@ const Patients = () => {
   const handleViewPatient = (patient) => {
     navigate(`/patients/${patient.Id}`);
   };
-
   const handleEditPatient = (patient) => {
     navigate(`/patients/${patient.Id}/edit`);
   };

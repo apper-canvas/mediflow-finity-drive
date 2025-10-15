@@ -3,6 +3,7 @@ import patientData from "../mockData/patients.json";
 class PatientService {
   constructor() {
     this.patients = [...patientData];
+    this.delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   }
 
   async delay() {
@@ -52,14 +53,18 @@ class PatientService {
     return null;
   }
 
-  async search(query) {
+async search(query) {
     await this.delay();
+    if (!query || typeof query !== 'string') {
+      return [...this.patients];
+    }
+    
     const searchTerm = query.toLowerCase();
     return this.patients.filter(patient =>
-      patient.firstName.toLowerCase().includes(searchTerm) ||
-      patient.lastName.toLowerCase().includes(searchTerm) ||
-      patient.email.toLowerCase().includes(searchTerm) ||
-      patient.phone.includes(searchTerm)
+      patient.firstName?.toLowerCase().includes(searchTerm) ||
+      patient.lastName?.toLowerCase().includes(searchTerm) ||
+      patient.email?.toLowerCase().includes(searchTerm) ||
+      patient.phone?.includes(searchTerm)
     );
   }
 }

@@ -1,0 +1,179 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
+import patientService from '@/services/api/patientService';
+import Loading from '@/components/ui/Loading';
+import Error from '@/components/ui/Error';
+import Button from '@/components/atoms/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/Card';
+import StatusBadge from '@/components/molecules/StatusBadge';
+import ApperIcon from '@/components/ApperIcon';
+import LabResultsSection from '@/components/organisms/LabResultsSection';
+
+const PatientDetail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [patient, setPatient] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    loadPatient();
+  }, [id]);
+
+  const loadPatient = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await patientService.getById(id);
+      setPatient(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
+  if (!patient) return <Error message="Patient not found" />;
+
+  const age = new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear();
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            icon="ArrowLeft"
+            onClick={() => navigate('/patients')}
+          >
+            Back
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">
+              {patient.firstName} {patient.lastName}
+            </h1>
+            <p className="text-sm text-gray-500">Patient ID: {patient.Id}</p>
+          </div>
+        </div>
+        <StatusBadge status={patient.status} type="patient" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle>Patient Information</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Date of Birth</h3>
+                <p className="text-base text-gray-900">
+                  {format(new Date(patient.dateOfBirth), 'MMMM d, yyyy')} ({age} years old)
+                </p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Gender</h3>
+                <p className="text-base text-gray-900 capitalize">{patient.gender}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Blood Type</h3>
+                <p className="text-base text-gray-900 font-medium">{patient.bloodType}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Phone</h3>
+                <p className="text-base text-gray-900">{patient.phone}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Email</h3>
+                <p className="text-base text-gray-900">{patient.email}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Registration Date</h3>
+                <p className="text-base text-gray-900">
+                  {format(new Date(patient.registrationDate), 'MMMM d, yyyy')}
+                </p>
+              </div>
+              <div className="md:col-span-2">
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Address</h3>
+                <p className="text-base text-gray-900">{patient.address}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Emergency Contact</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Name</h3>
+                <p className="text-base text-gray-900">{patient.emergencyContact.name}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Relationship</h3>
+                <p className="text-base text-gray-900 capitalize">
+                  {patient.emergencyContact.relationship}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">Phone</h3>
+                <p className="text-base text-gray-900">{patient.emergencyContact.phone}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {patient.medicalHistory && patient.medicalHistory.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Medical History</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {patient.medicalHistory.map((history, index) => (
+                <div
+                  key={index}
+                  className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg"
+                >
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <ApperIcon name="FileText" size={20} className="text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-gray-900">{history.condition}</h4>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Diagnosed: {format(new Date(history.diagnosedDate), 'MMMM d, yyyy')}
+                    </p>
+                    <div className="mt-2">
+                      <span
+                        className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                          history.status === 'active'
+                            ? 'bg-warning/10 text-warning'
+                            : history.status === 'resolved'
+                            ? 'bg-success/10 text-success'
+                            : 'bg-gray-100 text-gray-600'
+                        }`}
+                      >
+                        {history.status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      <LabResultsSection patientId={patient.Id} />
+    </div>
+  );
+};
+
+export default PatientDetail;
