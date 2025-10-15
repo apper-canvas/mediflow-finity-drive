@@ -133,13 +133,13 @@ const AppointmentCalendar = ({ appointments = [], onAppointmentClick, onNewAppoi
                             onClick={(e) => {
                               e.stopPropagation();
                               onAppointmentClick && onAppointmentClick(appointment);
-                            }}
+}}
                           >
                             <div className="font-medium truncate">
-                              Patient ID: {appointment.patientId}
+                              Patient ID: {appointment?.patientId || "N/A"}
                             </div>
                             <div className="truncate opacity-90">
-                              {appointment.type}
+                              {appointment?.type || "Unknown"}
                             </div>
                             <div className="mt-1">
                               <StatusBadge status={appointment.status} />

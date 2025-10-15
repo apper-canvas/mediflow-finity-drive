@@ -77,10 +77,10 @@ const StaffGrid = ({ staff, onViewStaff, loading = false }) => {
                       src={member.photo}
                       alt={member.name}
                       className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-primary to-secondary"
-                    />
+/>
                   ) : (
                     <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                      {member.name.split(" ").map(n => n[0]).join("")}
+                      {member?.name?.split(" ").map(n => n?.[0] || "?").join("") || "??"}
                     </div>
                   )}
                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md">

@@ -99,33 +99,33 @@ const PatientTable = ({ patients, onViewPatient, onEditPatient, loading = false 
           <tbody className="bg-white divide-y divide-gray-200">
             {sortedPatients.map((patient) => (
               <tr key={patient.Id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
+<td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
                     <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-semibold">
-                      {patient.firstName.charAt(0)}{patient.lastName.charAt(0)}
+                      {patient?.firstName?.charAt(0) || "?"}{patient?.lastName?.charAt(0) || "?"}
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900">
-                        {patient.firstName} {patient.lastName}
+                        {patient?.firstName || "N/A"} {patient?.lastName || "N/A"}
                       </div>
                       <div className="text-sm text-gray-500">
-                        ID: {patient.Id}
+                        ID: {patient?.Id || "N/A"}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{patient.phone}</div>
-                  <div className="text-sm text-gray-500">{patient.email}</div>
+                  <div className="text-sm text-gray-900">{patient?.phone || "N/A"}</div>
+                  <div className="text-sm text-gray-500">{patient?.email || "N/A"}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear()}
+                  {patient?.dateOfBirth ? new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear() : "N/A"}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="text-sm font-medium text-gray-900">{patient.bloodType}</span>
+                  <span className="text-sm font-medium text-gray-900">{patient?.bloodType || "Unknown"}</span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <StatusBadge status={patient.status} type="patient" />
+                  <StatusBadge status={patient?.status || "Unknown"} type="patient" />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                   <Button
