@@ -37,7 +37,11 @@ const [formData, setFormData] = useState({
     pastSurgeries: "",
     familyHistory: "",
 primaryPhysician: "",
-    admissionDate: ""
+    admissionDate: "",
+    insuranceProvider: "",
+    policyNumber: "",
+    coverageDetails: "",
+    paymentMode: "Cash"
   });
 
   const [errors, setErrors] = useState({});
@@ -71,7 +75,11 @@ setFormData({
         pastSurgeries: Array.isArray(patient.pastSurgeries) ? patient.pastSurgeries.join(", ") : "",
         familyHistory: patient.familyHistory || "",
 primaryPhysician: patient.primaryPhysician || "",
-        admissionDate: patient.admissionDate || ""
+        admissionDate: patient.admissionDate || "",
+        insuranceProvider: patient.insuranceProvider || "",
+        policyNumber: patient.policyNumber || "",
+        coverageDetails: patient.coverageDetails || "",
+        paymentMode: patient.paymentMode || "Cash"
       });
     } catch (err) {
       setError("Failed to load patient details. Please try again.");
@@ -140,6 +148,10 @@ const newErrors = {};
       newErrors.emergencyPhone = "Emergency contact phone is required";
     } else if (!/^\+?[\d\s-()]+$/.test(formData.emergencyPhone)) {
       newErrors.emergencyPhone = "Invalid phone number format";
+    }
+
+    if (!formData.insuranceProvider.trim()) {
+      newErrors.insuranceProvider = "Insurance provider is required";
     }
 
     setErrors(newErrors);
@@ -534,7 +546,74 @@ const newErrors = {};
               )}
             </div>
           </div>
+{/* Insurance / Billing Section */}
+          <Card className="p-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+              <ApperIcon name="CreditCard" size={24} className="mr-2 text-primary" />
+              Insurance / Billing
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Insurance Provider <span className="text-error">*</span>
+                </label>
+<Input
+                  type="text"
+                  name="insuranceProvider"
+                  value={formData.insuranceProvider}
+                  onChange={handleInputChange}
+                  placeholder="Enter insurance provider"
+                  className={errors.insuranceProvider ? "border-error" : ""}
+                />
+                {errors.insuranceProvider && (
+                  <p className="text-error text-sm mt-1">{errors.insuranceProvider}</p>
+                )}
+              </div>
 
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Policy Number
+                </label>
+<Input
+                  type="text"
+                  name="policyNumber"
+                  value={formData.policyNumber}
+                  onChange={handleInputChange}
+                  placeholder="Enter policy number"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Coverage Details
+                </label>
+<Input
+                  type="text"
+                  name="coverageDetails"
+                  value={formData.coverageDetails}
+                  onChange={handleInputChange}
+                  placeholder="Enter coverage details"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Payment Mode
+                </label>
+<select
+                  name="paymentMode"
+                  value={formData.paymentMode}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                >
+                  <option value="Cash">Cash</option>
+                  <option value="Card">Card</option>
+                  <option value="Insurance">Insurance</option>
+                  <option value="Online">Online</option>
+                </select>
+              </div>
+            </div>
+          </Card>
           {/* Emergency Contact Section */}
           <div>
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Emergency Contact</h2>

@@ -22,6 +22,10 @@
     "pastSurgeries": ["Appendectomy (2015)"],
     "familyHistory": "Mother: Hypertension, Father: Diabetes",
     "primaryPhysician": "Dr. Emily Roberts",
+    "insuranceProvider": "Blue Cross Blue Shield",
+    "policyNumber": "BCBS-123456789",
+    "coverageDetails": "Comprehensive coverage with $500 deductible",
+    "paymentMode": "Insurance",
     "medicalHistory": [
       {
         "condition": "Hypertension",
@@ -64,6 +68,10 @@
     "pastSurgeries": [],
     "familyHistory": "No significant family history",
     "primaryPhysician": "Dr. James Chen",
+    "insuranceProvider": "United Healthcare",
+    "policyNumber": "UHC-987654321",
+    "coverageDetails": "Standard PPO plan with $1000 deductible",
+    "paymentMode": "Insurance",
     "medicalHistory": [
       {
         "condition": "Asthma",
@@ -101,6 +109,10 @@
     "pastSurgeries": [],
     "familyHistory": "Mother: Migraine disorder",
     "primaryPhysician": "Dr. Sarah Williams",
+    "insuranceProvider": "Aetna",
+    "policyNumber": "AET-456789123",
+    "coverageDetails": "Premium plan with specialist coverage",
+    "paymentMode": "Card",
     "medicalHistory": [
       {
         "condition": "Migraine",
@@ -138,6 +150,10 @@
     "pastSurgeries": ["Knee Arthroscopy (2021)"],
     "familyHistory": "Father: Heart disease, Mother: Arthritis",
     "primaryPhysician": "Dr. Michael Brown",
+    "insuranceProvider": "Cigna",
+    "policyNumber": "CIG-789123456",
+    "coverageDetails": "Gold plan with dental and vision",
+    "paymentMode": "Insurance",
     "medicalHistory": [
       {
         "condition": "High Cholesterol",
@@ -180,6 +196,10 @@
     "pastSurgeries": [],
     "familyHistory": "Sister: Anxiety disorder, Mother: Depression",
     "primaryPhysician": "Dr. Lisa Anderson",
+    "insuranceProvider": "Kaiser Permanente",
+    "policyNumber": "KP-321654987",
+    "coverageDetails": "HMO plan with mental health services",
+    "paymentMode": "Online",
     "medicalHistory": [
       {
         "condition": "Anxiety Disorder",
@@ -217,6 +237,10 @@
     "pastSurgeries": ["Lumbar Discectomy (2020)"],
     "familyHistory": "Father: Back problems",
     "primaryPhysician": "Dr. Robert Taylor",
+    "insuranceProvider": "Humana",
+    "policyNumber": "HUM-654987321",
+    "coverageDetails": "Medicare Advantage with prescription coverage",
+    "paymentMode": "Cash",
     "medicalHistory": [
       {
         "condition": "Back Pain",
@@ -254,6 +278,10 @@
     "pastSurgeries": [],
     "familyHistory": "No significant family history",
     "primaryPhysician": "Dr. Jennifer Martinez",
+    "insuranceProvider": "Anthem Blue Cross",
+    "policyNumber": "ABC-159753486",
+    "coverageDetails": "Silver plan with preventive care",
+    "paymentMode": "Card",
     "medicalHistory": [],
     "status": "Active",
     "registrationDate": "2023-02-14",
@@ -285,6 +313,10 @@
     "pastSurgeries": ["Tonsillectomy (2021)"],
     "familyHistory": "Brother: Sleep apnea",
     "primaryPhysician": "Dr. David Wilson",
+    "insuranceProvider": "Medicaid",
+    "policyNumber": "MED-852963741",
+    "coverageDetails": "State health program with full coverage",
+    "paymentMode": "Insurance",
     "medicalHistory": [
       {
         "condition": "Sleep Apnea",

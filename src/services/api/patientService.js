@@ -36,7 +36,11 @@ registrationDate: new Date().toISOString().split("T")[0],
       currentMedications: patient.currentMedications || [],
       pastSurgeries: patient.pastSurgeries || [],
       familyHistory: patient.familyHistory || "",
-      primaryPhysician: patient.primaryPhysician || ""
+      primaryPhysician: patient.primaryPhysician || "",
+      insuranceProvider: patient.insuranceProvider || "",
+      policyNumber: patient.policyNumber || "",
+      coverageDetails: patient.coverageDetails || "",
+      paymentMode: patient.paymentMode || "Cash"
     };
     this.patients.push(newPatient);
     return { ...newPatient };
@@ -57,7 +61,11 @@ async update(id, patientData) {
         currentMedications: patientData.currentMedications || this.patients[index].currentMedications || [],
         pastSurgeries: patientData.pastSurgeries || this.patients[index].pastSurgeries || [],
         familyHistory: patientData.familyHistory || this.patients[index].familyHistory || "",
-        primaryPhysician: patientData.primaryPhysician || this.patients[index].primaryPhysician || ""
+        primaryPhysician: patientData.primaryPhysician || this.patients[index].primaryPhysician || "",
+        insuranceProvider: patientData.insuranceProvider || this.patients[index].insuranceProvider || "",
+        policyNumber: patientData.policyNumber || this.patients[index].policyNumber || "",
+        coverageDetails: patientData.coverageDetails || this.patients[index].coverageDetails || "",
+        paymentMode: patientData.paymentMode || this.patients[index].paymentMode || "Cash"
       };
       return { ...this.patients[index] };
     }
