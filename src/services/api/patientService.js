@@ -33,11 +33,29 @@ class PatientService {
     return { ...newPatient };
   }
 
-  async update(id, patientData) {
+async update(id, patientData) {
     await this.delay();
     const index = this.patients.findIndex(p => p.Id === parseInt(id));
     if (index !== -1) {
       this.patients[index] = { ...this.patients[index], ...patientData };
+      return { ...this.patients[index] };
+    }
+    return null;
+  }
+
+  async updateStatus(id, status, admissionId = null) {
+    await this.delay();
+    const index = this.patients.findIndex(p => p.Id === parseInt(id));
+    if (index !== -1) {
+      this.patients[index].status = status;
+      this.patients[index].admissionStatus = status;
+      if (admissionId) {
+        this.patients[index].currentAdmissionId = admissionId;
+      }
+      if (status === 'Discharged') {
+        this.patients[index].lastDischargeDate = new Date().toISOString().split('T')[0];
+        this.patients[index].currentAdmissionId = null;
+      }
       return { ...this.patients[index] };
     }
     return null;

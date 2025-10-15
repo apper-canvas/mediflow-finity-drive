@@ -7,12 +7,12 @@ const Patients = lazy(() => import("@/components/pages/Patients"));
 const Appointments = lazy(() => import("@/components/pages/Appointments"));
 const Staff = lazy(() => import("@/components/pages/Staff"));
 const Prescriptions = lazy(() => import("@/components/pages/Prescriptions"));
+const AdmissionDischarge = lazy(() => import("@/components/pages/AdmissionDischarge"));
 const Invoices = lazy(() => import("@/components/pages/Invoices"));
 const InvoiceDetail = lazy(() => import("@/components/pages/InvoiceDetail"));
 const CreateInvoice = lazy(() => import("@/components/pages/CreateInvoice"));
 const NotFound = lazy(() => import("@/components/pages/NotFound"));
 const PatientDetail = lazy(() => import("@/components/pages/PatientDetail"));
-
 const mainRoutes = [
   {
     path: "",
@@ -54,6 +54,14 @@ const mainRoutes = [
         <Prescriptions />
       </Suspense>
     ),
+  },
+  {
+    path: "admissions",
+    element: (
+      <Suspense fallback={<div>Loading.....</div>}>
+        <AdmissionDischarge />
+      </Suspense>
+    )
   },
   {
     path: "invoices",

@@ -28,7 +28,10 @@
       }
     ],
     "status": "Active",
-    "registrationDate": "2019-01-15"
+    "registrationDate": "2019-01-15",
+    "admissionStatus": "Active",
+"currentAdmissionId": null,
+    "lastDischargeDate": null
   },
   {
     "Id": 2,
@@ -54,7 +57,10 @@
       }
     ],
     "status": "Active",
-    "registrationDate": "2020-03-08"
+    "registrationDate": "2020-03-08",
+    "admissionStatus": "Active",
+"currentAdmissionId": null,
+    "lastDischargeDate": null
   },
   {
     "Id": 3,
@@ -80,7 +86,10 @@
       }
     ],
     "status": "Active",
-    "registrationDate": "2021-05-20"
+    "registrationDate": "2021-05-20",
+    "admissionStatus": "Active",
+"currentAdmissionId": null,
+    "lastDischargeDate": null
   },
   {
     "Id": 4,
@@ -111,7 +120,10 @@
       }
     ],
     "status": "Active",
-    "registrationDate": "2018-11-12"
+    "registrationDate": "2018-11-12",
+    "admissionStatus": "Active",
+"currentAdmissionId": null,
+    "lastDischargeDate": null
   },
   {
     "Id": 5,
@@ -137,7 +149,10 @@
       }
     ],
     "status": "Active",
-    "registrationDate": "2020-07-18"
+    "registrationDate": "2020-07-18",
+    "admissionStatus": "Active",
+"currentAdmissionId": null,
+    "lastDischargeDate": null
   },
   {
     "Id": 6,
@@ -163,7 +178,10 @@
       }
     ],
     "status": "Active",
-    "registrationDate": "2021-01-30"
+    "registrationDate": "2021-01-30",
+    "admissionStatus": "Active",
+"currentAdmissionId": null,
+    "lastDischargeDate": null
   },
   {
     "Id": 7,
@@ -183,7 +201,10 @@
     "allergies": [],
     "medicalHistory": [],
     "status": "Active",
-    "registrationDate": "2023-02-14"
+    "registrationDate": "2023-02-14",
+    "admissionStatus": "Active",
+"currentAdmissionId": null,
+    "lastDischargeDate": null
   },
   {
     "Id": 8,
@@ -209,6 +230,9 @@
       }
     ],
     "status": "Active",
-    "registrationDate": "2022-04-05"
+    "registrationDate": "2022-04-05",
+    "admissionStatus": "Active",
+    "currentAdmissionId": null,
+    "lastDischargeDate": null
   }
 ]

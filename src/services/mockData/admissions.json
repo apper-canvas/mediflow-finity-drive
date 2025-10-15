@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "patientId": 1,
+    "admissionDate": "2024-01-10",
+    "admissionReason": "Hypertension Management and Diabetes Monitoring",
+    "department": "Internal Medicine",
+    "roomNumber": "301A",
+    "attendingPhysician": "Dr. Sarah Mitchell",
+    "status": "Discharged",
+    "dischargeDate": "2024-01-15",
+    "dischargeSummary": "Patient's blood pressure stabilized with adjusted medication. Blood glucose levels improved with new insulin regimen. No complications observed during hospitalization.",
+    "followUpInstructions": "Continue prescribed medications. Monitor blood pressure daily. Check blood glucose levels twice daily. Low sodium diet. Follow up with primary care physician in 2 weeks.",
+    "followUpDate": "2024-01-29"
+  },
+  {
+    "Id": 2,
+    "patientId": 2,
+    "admissionDate": "2024-01-12",
+    "admissionReason": "Severe Asthma Exacerbation",
+    "department": "Pulmonology",
+    "roomNumber": "215B",
+    "attendingPhysician": "Dr. Michael Chen",
+    "status": "Admitted",
+    "dischargeDate": null,
+    "dischargeSummary": null,
+    "followUpInstructions": null,
+    "followUpDate": null
+  },
+  {
+    "Id": 3,
+    "patientId": 4,
+    "admissionDate": "2024-01-08",
+    "admissionReason": "Joint Replacement Surgery - Arthritis Treatment",
+    "department": "Orthopedics",
+    "roomNumber": "402C",
+    "attendingPhysician": "Dr. Robert Williams",
+    "status": "Admitted",
+    "dischargeDate": null,
+    "dischargeSummary": null,
+    "followUpInstructions": null,
+    "followUpDate": null
+  }
+]

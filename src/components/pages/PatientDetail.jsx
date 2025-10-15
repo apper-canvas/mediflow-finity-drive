@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 import patientService from '@/services/api/patientService';
+import admissionService from '@/services/api/admissionService';
 import Loading from '@/components/ui/Loading';
 import Error from '@/components/ui/Error';
 import Button from '@/components/atoms/Button';
@@ -9,19 +11,22 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/Car
 import StatusBadge from '@/components/molecules/StatusBadge';
 import ApperIcon from '@/components/ApperIcon';
 import LabResultsSection from '@/components/organisms/LabResultsSection';
-
+import AdmissionForm from '@/components/molecules/AdmissionForm';
+import DischargeForm from '@/components/molecules/DischargeForm';
 const PatientDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [patient, setPatient] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAdmissionForm, setShowAdmissionForm] = useState(false);
+  const [showDischargeForm, setShowDischargeForm] = useState(false);
 
   useEffect(() => {
     loadPatient();
   }, [id]);
 
-  const loadPatient = async () => {
+const loadPatient = async () => {
     try {
       setLoading(true);
       setError(null);
@@ -34,11 +39,40 @@ const PatientDetail = () => {
     }
   };
 
+  const handleAdmitPatient = async (admissionData) => {
+    try {
+      const admission = await admissionService.create({
+        ...admissionData,
+        patientId: parseInt(id)
+      });
+      await patientService.updateStatus(id, 'Admitted', admission.Id);
+      toast.success('Patient admitted successfully');
+      setShowAdmissionForm(false);
+      loadPatient();
+    } catch (err) {
+      toast.error('Failed to admit patient: ' + err.message);
+    }
+  };
+
+  const handleDischargePatient = async (dischargeData) => {
+    try {
+      if (patient.currentAdmissionId) {
+        await admissionService.discharge(patient.currentAdmissionId, dischargeData);
+        await patientService.updateStatus(id, 'Discharged');
+        toast.success('Patient discharged successfully');
+        setShowDischargeForm(false);
+        loadPatient();
+      }
+    } catch (err) {
+      toast.error('Failed to discharge patient: ' + err.message);
+    }
+  };
+
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
   if (!patient) return <Error message="Patient not found" />;
 
-  const age = new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear();
+const age = new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear();
 
   return (
     <div className="space-y-6">
@@ -59,7 +93,26 @@ const PatientDetail = () => {
             <p className="text-sm text-gray-500">Patient ID: {patient.Id}</p>
           </div>
         </div>
-        <StatusBadge status={patient.status} type="patient" />
+        <div className="flex items-center gap-3">
+          <StatusBadge status={patient.status} type="patient" />
+          {patient.admissionStatus === 'Active' && (
+            <Button
+              onClick={() => setShowAdmissionForm(true)}
+              icon="UserPlus"
+            >
+              Admit Patient
+            </Button>
+          )}
+          {patient.admissionStatus === 'Admitted' && (
+            <Button
+              onClick={() => setShowDischargeForm(true)}
+              variant="secondary"
+              icon="UserMinus"
+            >
+              Discharge Patient
+            </Button>
+          )}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -170,8 +223,24 @@ const PatientDetail = () => {
           </CardContent>
         </Card>
       )}
+<LabResultsSection patientId={patient.Id} />
 
-      <LabResultsSection patientId={patient.Id} />
+      {showAdmissionForm && (
+        <AdmissionForm
+          patient={patient}
+          onSubmit={handleAdmitPatient}
+          onCancel={() => setShowAdmissionForm(false)}
+        />
+      )}
+
+      {showDischargeForm && (
+        <DischargeForm
+          patient={patient}
+          admissionId={patient.currentAdmissionId}
+          onSubmit={handleDischargePatient}
+          onCancel={() => setShowDischargeForm(false)}
+        />
+      )}
     </div>
   );
 };
