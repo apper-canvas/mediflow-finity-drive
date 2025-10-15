@@ -5,9 +5,9 @@ import Layout from "@/components/organisms/Layout";
 const Dashboard = lazy(() => import("@/components/pages/Dashboard"));
 const Patients = lazy(() => import("@/components/pages/Patients"));
 const Appointments = lazy(() => import("@/components/pages/Appointments"));
+const Prescriptions = lazy(() => import("@/components/pages/Prescriptions"));
 const Staff = lazy(() => import("@/components/pages/Staff"));
 const NotFound = lazy(() => import("@/components/pages/NotFound"));
-
 const mainRoutes = [
   {
     path: "",
@@ -31,6 +31,14 @@ const mainRoutes = [
     element: (
       <Suspense fallback={<div>Loading.....</div>}>
         <Appointments />
+      </Suspense>
+    )
+  },
+{
+    path: "prescriptions",
+    element: (
+      <Suspense fallback={<div>Loading.....</div>}>
+        <Prescriptions />
       </Suspense>
     )
   },
