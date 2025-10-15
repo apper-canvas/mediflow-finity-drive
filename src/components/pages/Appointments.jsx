@@ -8,19 +8,21 @@ import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
 import ApperIcon from "@/components/ApperIcon";
+import AppointmentDialog from "@/components/molecules/AppointmentDialog";
 import appointmentService from "@/services/api/appointmentService";
 import patientService from "@/services/api/patientService";
 import staffService from "@/services/api/staffService";
-
 const Appointments = () => {
-  const [appointments, setAppointments] = useState([]);
+const [appointments, setAppointments] = useState([]);
   const [patients, setPatients] = useState([]);
   const [staff, setStaff] = useState([]);
   const [recentAppointments, setRecentAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [viewMode, setViewMode] = useState("calendar");
-
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogInitialDate, setDialogInitialDate] = useState(null);
+  const [dialogInitialTime, setDialogInitialTime] = useState(null);
   const loadAppointments = async () => {
     try {
       setLoading(true);
@@ -54,10 +56,36 @@ const Appointments = () => {
     toast.info(`Clicked appointment: ${appointment.type} at ${appointment.time}`);
   };
 
-  const handleNewAppointment = (date = null, time = null) => {
-    toast.info("New appointment modal would open here");
+const handleNewAppointment = (date = null, time = null) => {
+    setDialogInitialDate(date);
+    setDialogInitialTime(time);
+    setIsDialogOpen(true);
   };
 
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+    setDialogInitialDate(null);
+    setDialogInitialTime(null);
+  };
+
+  const handleSaveAppointment = async (appointmentData) => {
+    try {
+      const newAppointment = await appointmentService.create(appointmentData);
+      setAppointments(prev => [...prev, newAppointment]);
+      
+      const recent = appointments
+        .concat([newAppointment])
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 5);
+      setRecentAppointments(recent);
+
+      toast.success("Appointment scheduled successfully!");
+      handleCloseDialog();
+    } catch (err) {
+      toast.error("Failed to schedule appointment. Please try again.");
+      console.error("Error creating appointment:", err);
+    }
+  };
   const getPatientName = (patientId) => {
     const patient = patients.find(p => p.Id.toString() === patientId);
     return patient ? `${patient.firstName} ${patient.lastName}` : "Unknown Patient";
@@ -322,6 +350,16 @@ const Appointments = () => {
           </Card>
         </div>
       </div>
+{/* Appointment Dialog */}
+      <AppointmentDialog
+        isOpen={isDialogOpen}
+        onClose={handleCloseDialog}
+        onSave={handleSaveAppointment}
+        patients={patients}
+        staff={staff}
+        initialDate={dialogInitialDate}
+        initialTime={dialogInitialTime}
+      />
     </div>
   );
 };
