@@ -1,7 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import React, { useState } from "react";
 import ApperIcon from "@/components/ApperIcon";
-import SearchBar from "@/components/molecules/SearchBar";
 import Button from "@/components/atoms/Button";
 
 function Header() {
@@ -50,13 +49,6 @@ const navItems = [
 </nav>
 
           {/* Search Bar (Desktop) */}
-          <div className="hidden lg:block">
-            <SearchBar
-              placeholder="Search patients, appointments..."
-              onSearch={(query) => console.log("Search:", query)}
-              className="w-64"
-            />
-          </div>
 
           {/* User Actions */}
           <div className="flex items-center gap-2">
@@ -100,13 +92,6 @@ const navItems = [
                   <span>{item.label}</span>
 </NavLink>
               ))}
-            </div>
-            {/* Mobile Search */}
-            <div className="px-4 pb-4">
-              <SearchBar
-                placeholder="Search patients, appointments..."
-                onSearch={(query) => console.log("Search:", query)}
-              />
             </div>
           </div>
         )}
