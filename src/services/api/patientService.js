@@ -26,7 +26,8 @@ class PatientService {
 const newPatient = {
       ...patient,
       Id: Math.max(...this.patients.map(p => p.Id)) + 1,
-      registrationDate: new Date().toISOString().split("T")[0],
+registrationDate: new Date().toISOString().split("T")[0],
+      admissionDate: patientData.admissionDate || "",
       status: "Active",
       height: patient.height || "",
       weight: patient.weight || "",
@@ -47,7 +48,8 @@ async update(id, patientData) {
     if (index !== -1) {
       this.patients[index] = {
         ...this.patients[index],
-        ...patientData,
+...patientData,
+        admissionDate: patientData.admissionDate || this.patients[index].admissionDate || "",
         height: patientData.height || this.patients[index].height || "",
         weight: patientData.weight || this.patients[index].weight || "",
         allergies: patientData.allergies || this.patients[index].allergies || [],

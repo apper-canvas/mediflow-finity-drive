@@ -36,7 +36,8 @@ const [formData, setFormData] = useState({
     currentMedications: "",
     pastSurgeries: "",
     familyHistory: "",
-    primaryPhysician: ""
+primaryPhysician: "",
+    admissionDate: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -69,7 +70,8 @@ setFormData({
         currentMedications: Array.isArray(patient.currentMedications) ? patient.currentMedications.join(", ") : "",
         pastSurgeries: Array.isArray(patient.pastSurgeries) ? patient.pastSurgeries.join(", ") : "",
         familyHistory: patient.familyHistory || "",
-        primaryPhysician: patient.primaryPhysician || ""
+primaryPhysician: patient.primaryPhysician || "",
+        admissionDate: patient.admissionDate || ""
       });
     } catch (err) {
       setError("Failed to load patient details. Please try again.");
@@ -350,7 +352,21 @@ const newErrors = {};
                 />
                 {errors.address && (
                   <p className="text-error text-sm mt-1">{errors.address}</p>
-                )}
+)}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Admission Date
+                </label>
+                <Input
+                  type="date"
+                  value={formData.admissionDate}
+                  onChange={(e) =>
+                    setFormData({ ...formData, admissionDate: e.target.value })
+                  }
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
