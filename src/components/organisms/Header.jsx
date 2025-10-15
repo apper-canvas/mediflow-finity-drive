@@ -1,8 +1,11 @@
-import { NavLink } from "react-router-dom";
-import React from "react";
+import { NavLink, Link } from "react-router-dom";
+import React, { useState } from "react";
 import ApperIcon from "@/components/ApperIcon";
+import SearchBar from "@/components/molecules/SearchBar";
+import Button from "@/components/atoms/Button";
 
 function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navItems = [
     { path: '/', label: 'Dashboard', icon: 'LayoutDashboard' },
     { path: '/patients', label: 'Patients', icon: 'Users' },
@@ -43,17 +46,8 @@ function Header() {
                 {item.label}
               </NavLink>
             ))}
-          </nav>
+</nav>
 
-<div className="flex items-center gap-2">
-            <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-              <ApperIcon name="Bell" size={20} />
-            </button>
-            <button className="flex items-center gap-2 p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-              <ApperIcon name="User" size={20} />
-            </button>
-          </div>
-        </div>
           {/* Search Bar (Desktop) */}
           <div className="hidden lg:block">
             <SearchBar
@@ -63,14 +57,24 @@ function Header() {
             />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              icon={isMobileMenuOpen ? "X" : "Menu"}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+          {/* User Actions */}
+          <div className="flex items-center gap-2">
+            <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+              <ApperIcon name="Bell" size={20} />
+            </button>
+            <button className="flex items-center gap-2 p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+              <ApperIcon name="User" size={20} />
+            </button>
+            
+            {/* Mobile Menu Button */}
+            <div className="md:hidden ml-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={isMobileMenuOpen ? "X" : "Menu"}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
           </div>
         </div>
 
@@ -78,20 +82,22 @@ function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
+{navItems.map((item) => (
+                <NavLink
+                  key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                    isActive(item.path)
-                      ? "text-primary bg-blue-50"
-                      : "text-gray-600 hover:text-primary hover:bg-gray-50"
-                  }`}
+                  className={({ isActive }) =>
+                    `flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                      isActive
+                        ? "text-primary bg-blue-50"
+                        : "text-gray-600 hover:text-primary hover:bg-gray-50"
+                    }`
+                  }
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <ApperIcon name={item.icon} size={18} />
-                  <span>{item.name}</span>
-                </Link>
+                  <span>{item.label}</span>
+</NavLink>
               ))}
             </div>
             {/* Mobile Search */}
@@ -105,7 +111,7 @@ function Header() {
         )}
       </div>
     </header>
-  );
-};
+);
+}
 
 export default Header;
