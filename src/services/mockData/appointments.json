@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 1,
+    "patientId": "1",
+    "doctorId": "1",
+    "date": "2024-01-15",
+    "time": "09:00",
+    "duration": 30,
+    "type": "Routine Checkup",
+    "status": "Scheduled",
+    "notes": "Regular blood pressure monitoring",
+    "createdAt": "2024-01-10"
+  },
+  {
+    "Id": 2,
+    "patientId": "2",
+    "doctorId": "2",
+    "date": "2024-01-15",
+    "time": "10:30",
+    "duration": 45,
+    "type": "Consultation",
+    "status": "Scheduled",
+    "notes": "Asthma follow-up consultation",
+    "createdAt": "2024-01-12"
+  },
+  {
+    "Id": 3,
+    "patientId": "3",
+    "doctorId": "3",
+    "date": "2024-01-15",
+    "time": "14:00",
+    "duration": 30,
+    "type": "Specialist Visit",
+    "status": "Completed",
+    "notes": "Migraine treatment discussion",
+    "createdAt": "2024-01-08"
+  },
+  {
+    "Id": 4,
+    "patientId": "4",
+    "doctorId": "1",
+    "date": "2024-01-16",
+    "time": "11:15",
+    "duration": 30,
+    "type": "Follow-up",
+    "status": "Scheduled",
+    "notes": "Cholesterol level review",
+    "createdAt": "2024-01-11"
+  },
+  {
+    "Id": 5,
+    "patientId": "5",
+    "doctorId": "4",
+    "date": "2024-01-16",
+    "time": "15:30",
+    "duration": 60,
+    "type": "Therapy Session",
+    "status": "Scheduled",
+    "notes": "Anxiety management session",
+    "createdAt": "2024-01-13"
+  },
+  {
+    "Id": 6,
+    "patientId": "6",
+    "doctorId": "5",
+    "date": "2024-01-17",
+    "time": "08:30",
+    "duration": 45,
+    "type": "Physical Therapy",
+    "status": "Scheduled",
+    "notes": "Lower back strengthening exercises",
+    "createdAt": "2024-01-14"
+  },
+  {
+    "Id": 7,
+    "patientId": "7",
+    "doctorId": "1",
+    "date": "2024-01-17",
+    "time": "13:00",
+    "duration": 30,
+    "type": "Routine Checkup",
+    "status": "Scheduled",
+    "notes": "Annual health screening",
+    "createdAt": "2024-01-09"
+  },
+  {
+    "Id": 8,
+    "patientId": "8",
+    "doctorId": "6",
+    "date": "2024-01-18",
+    "time": "16:00",
+    "duration": 60,
+    "type": "Sleep Study Consultation",
+    "status": "Scheduled",
+    "notes": "Sleep apnea evaluation",
+    "createdAt": "2024-01-10"
+  },
+  {
+    "Id": 9,
+    "patientId": "1",
+    "doctorId": "1",
+    "date": "2024-01-12",
+    "time": "10:00",
+    "duration": 30,
+    "type": "Routine Checkup",
+    "status": "Completed",
+    "notes": "Blood pressure normal, continue medication",
+    "createdAt": "2024-01-05"
+  },
+  {
+    "Id": 10,
+    "patientId": "3",
+    "doctorId": "3",
+    "date": "2024-01-14",
+    "time": "11:30",
+    "duration": 30,
+    "type": "Follow-up",
+    "status": "Cancelled",
+    "notes": "Patient requested reschedule",
+    "createdAt": "2024-01-07"
+  }
+]

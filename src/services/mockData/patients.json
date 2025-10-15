@@ -1,0 +1,214 @@
+[
+  {
+    "Id": 1,
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "dateOfBirth": "1985-03-15",
+    "gender": "Female",
+    "phone": "(555) 123-4567",
+    "email": "sarah.johnson@email.com",
+    "address": "123 Main Street, New York, NY 10001",
+    "emergencyContact": {
+      "name": "Michael Johnson",
+      "relationship": "Spouse",
+      "phone": "(555) 123-4568"
+    },
+    "bloodType": "A+",
+    "allergies": ["Penicillin", "Shellfish"],
+    "medicalHistory": [
+      {
+        "condition": "Hypertension",
+        "diagnosedDate": "2020-05-12",
+        "status": "Active"
+      },
+      {
+        "condition": "Diabetes Type 2",
+        "diagnosedDate": "2019-08-20",
+        "status": "Managed"
+      }
+    ],
+    "status": "Active",
+    "registrationDate": "2019-01-15"
+  },
+  {
+    "Id": 2,
+    "firstName": "David",
+    "lastName": "Martinez",
+    "dateOfBirth": "1976-11-22",
+    "gender": "Male",
+    "phone": "(555) 234-5678",
+    "email": "david.martinez@email.com",
+    "address": "456 Oak Avenue, Los Angeles, CA 90210",
+    "emergencyContact": {
+      "name": "Maria Martinez",
+      "relationship": "Spouse",
+      "phone": "(555) 234-5679"
+    },
+    "bloodType": "B-",
+    "allergies": ["Latex", "Aspirin"],
+    "medicalHistory": [
+      {
+        "condition": "Asthma",
+        "diagnosedDate": "2018-04-10",
+        "status": "Active"
+      }
+    ],
+    "status": "Active",
+    "registrationDate": "2020-03-08"
+  },
+  {
+    "Id": 3,
+    "firstName": "Emily",
+    "lastName": "Chen",
+    "dateOfBirth": "1992-07-08",
+    "gender": "Female",
+    "phone": "(555) 345-6789",
+    "email": "emily.chen@email.com",
+    "address": "789 Pine Street, Chicago, IL 60601",
+    "emergencyContact": {
+      "name": "James Chen",
+      "relationship": "Father",
+      "phone": "(555) 345-6780"
+    },
+    "bloodType": "O+",
+    "allergies": [],
+    "medicalHistory": [
+      {
+        "condition": "Migraine",
+        "diagnosedDate": "2021-09-15",
+        "status": "Active"
+      }
+    ],
+    "status": "Active",
+    "registrationDate": "2021-05-20"
+  },
+  {
+    "Id": 4,
+    "firstName": "Robert",
+    "lastName": "Williams",
+    "dateOfBirth": "1968-12-03",
+    "gender": "Male",
+    "phone": "(555) 456-7890",
+    "email": "robert.williams@email.com",
+    "address": "321 Elm Drive, Miami, FL 33101",
+    "emergencyContact": {
+      "name": "Linda Williams",
+      "relationship": "Spouse",
+      "phone": "(555) 456-7891"
+    },
+    "bloodType": "AB+",
+    "allergies": ["Iodine"],
+    "medicalHistory": [
+      {
+        "condition": "High Cholesterol",
+        "diagnosedDate": "2019-02-28",
+        "status": "Managed"
+      },
+      {
+        "condition": "Arthritis",
+        "diagnosedDate": "2022-01-10",
+        "status": "Active"
+      }
+    ],
+    "status": "Active",
+    "registrationDate": "2018-11-12"
+  },
+  {
+    "Id": 5,
+    "firstName": "Jessica",
+    "lastName": "Brown",
+    "dateOfBirth": "1988-05-19",
+    "gender": "Female",
+    "phone": "(555) 567-8901",
+    "email": "jessica.brown@email.com",
+    "address": "654 Maple Lane, Seattle, WA 98101",
+    "emergencyContact": {
+      "name": "Mark Brown",
+      "relationship": "Brother",
+      "phone": "(555) 567-8902"
+    },
+    "bloodType": "A-",
+    "allergies": ["Nuts", "Dairy"],
+    "medicalHistory": [
+      {
+        "condition": "Anxiety Disorder",
+        "diagnosedDate": "2020-11-05",
+        "status": "Managed"
+      }
+    ],
+    "status": "Active",
+    "registrationDate": "2020-07-18"
+  },
+  {
+    "Id": 6,
+    "firstName": "Michael",
+    "lastName": "Davis",
+    "dateOfBirth": "1982-09-14",
+    "gender": "Male",
+    "phone": "(555) 678-9012",
+    "email": "michael.davis@email.com",
+    "address": "987 Cedar Road, Denver, CO 80201",
+    "emergencyContact": {
+      "name": "Susan Davis",
+      "relationship": "Mother",
+      "phone": "(555) 678-9013"
+    },
+    "bloodType": "O-",
+    "allergies": ["Sulfa Drugs"],
+    "medicalHistory": [
+      {
+        "condition": "Back Pain",
+        "diagnosedDate": "2021-03-22",
+        "status": "Active"
+      }
+    ],
+    "status": "Active",
+    "registrationDate": "2021-01-30"
+  },
+  {
+    "Id": 7,
+    "firstName": "Amanda",
+    "lastName": "Wilson",
+    "dateOfBirth": "1995-01-25",
+    "gender": "Female",
+    "phone": "(555) 789-0123",
+    "email": "amanda.wilson@email.com",
+    "address": "147 Birch Avenue, Boston, MA 02101",
+    "emergencyContact": {
+      "name": "Carol Wilson",
+      "relationship": "Mother",
+      "phone": "(555) 789-0124"
+    },
+    "bloodType": "B+",
+    "allergies": [],
+    "medicalHistory": [],
+    "status": "Active",
+    "registrationDate": "2023-02-14"
+  },
+  {
+    "Id": 8,
+    "firstName": "Christopher",
+    "lastName": "Taylor",
+    "dateOfBirth": "1973-08-30",
+    "gender": "Male",
+    "phone": "(555) 890-1234",
+    "email": "chris.taylor@email.com",
+    "address": "258 Spruce Street, Phoenix, AZ 85001",
+    "emergencyContact": {
+      "name": "Jennifer Taylor",
+      "relationship": "Spouse",
+      "phone": "(555) 890-1235"
+    },
+    "bloodType": "A+",
+    "allergies": ["Codeine"],
+    "medicalHistory": [
+      {
+        "condition": "Sleep Apnea",
+        "diagnosedDate": "2022-06-18",
+        "status": "Active"
+      }
+    ],
+    "status": "Active",
+    "registrationDate": "2022-04-05"
+  }
+]

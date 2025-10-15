@@ -1,0 +1,131 @@
+[
+  {
+    "Id": 1,
+    "name": "Dr. John Anderson",
+    "role": "Doctor",
+    "specialization": "Internal Medicine",
+    "phone": "(555) 111-2222",
+    "email": "j.anderson@mediflow.com",
+    "availability": [
+      {"day": "Monday", "hours": "08:00-17:00"},
+      {"day": "Tuesday", "hours": "08:00-17:00"},
+      {"day": "Wednesday", "hours": "08:00-17:00"},
+      {"day": "Thursday", "hours": "08:00-17:00"},
+      {"day": "Friday", "hours": "08:00-15:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400"
+  },
+  {
+    "Id": 2,
+    "name": "Dr. Maria Rodriguez",
+    "role": "Doctor",
+    "specialization": "Pulmonology",
+    "phone": "(555) 222-3333",
+    "email": "m.rodriguez@mediflow.com",
+    "availability": [
+      {"day": "Monday", "hours": "09:00-18:00"},
+      {"day": "Tuesday", "hours": "09:00-18:00"},
+      {"day": "Wednesday", "hours": "09:00-18:00"},
+      {"day": "Thursday", "hours": "09:00-18:00"},
+      {"day": "Friday", "hours": "09:00-16:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1594824388853-d0b37e5a8975?w=400"
+  },
+  {
+    "Id": 3,
+    "name": "Dr. Sarah Kim",
+    "role": "Doctor",
+    "specialization": "Neurology",
+    "phone": "(555) 333-4444",
+    "email": "s.kim@mediflow.com",
+    "availability": [
+      {"day": "Tuesday", "hours": "08:00-16:00"},
+      {"day": "Wednesday", "hours": "08:00-16:00"},
+      {"day": "Thursday", "hours": "08:00-16:00"},
+      {"day": "Friday", "hours": "08:00-16:00"},
+      {"day": "Saturday", "hours": "08:00-12:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400"
+  },
+  {
+    "Id": 4,
+    "name": "Dr. Michael Thompson",
+    "role": "Doctor",
+    "specialization": "Psychiatry",
+    "phone": "(555) 444-5555",
+    "email": "m.thompson@mediflow.com",
+    "availability": [
+      {"day": "Monday", "hours": "10:00-19:00"},
+      {"day": "Tuesday", "hours": "10:00-19:00"},
+      {"day": "Wednesday", "hours": "10:00-19:00"},
+      {"day": "Thursday", "hours": "10:00-19:00"},
+      {"day": "Friday", "hours": "10:00-17:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400"
+  },
+  {
+    "Id": 5,
+    "name": "Lisa Carter",
+    "role": "Physical Therapist",
+    "specialization": "Orthopedic Rehabilitation",
+    "phone": "(555) 555-6666",
+    "email": "l.carter@mediflow.com",
+    "availability": [
+      {"day": "Monday", "hours": "07:00-15:00"},
+      {"day": "Tuesday", "hours": "07:00-15:00"},
+      {"day": "Wednesday", "hours": "07:00-15:00"},
+      {"day": "Thursday", "hours": "07:00-15:00"},
+      {"day": "Friday", "hours": "07:00-15:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=400"
+  },
+  {
+    "Id": 6,
+    "name": "Dr. James Wilson",
+    "role": "Doctor",
+    "specialization": "Sleep Medicine",
+    "phone": "(555) 666-7777",
+    "email": "j.wilson@mediflow.com",
+    "availability": [
+      {"day": "Monday", "hours": "12:00-20:00"},
+      {"day": "Tuesday", "hours": "12:00-20:00"},
+      {"day": "Wednesday", "hours": "12:00-20:00"},
+      {"day": "Thursday", "hours": "12:00-20:00"},
+      {"day": "Friday", "hours": "12:00-18:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400"
+  },
+  {
+    "Id": 7,
+    "name": "Jennifer Hayes",
+    "role": "Nurse",
+    "specialization": "Emergency Care",
+    "phone": "(555) 777-8888",
+    "email": "j.hayes@mediflow.com",
+    "availability": [
+      {"day": "Monday", "hours": "06:00-18:00"},
+      {"day": "Tuesday", "hours": "06:00-18:00"},
+      {"day": "Wednesday", "hours": "06:00-18:00"},
+      {"day": "Thursday", "hours": "06:00-18:00"},
+      {"day": "Friday", "hours": "06:00-18:00"},
+      {"day": "Saturday", "hours": "06:00-14:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1651008376811-b98baee60c1f?w=400"
+  },
+  {
+    "Id": 8,
+    "name": "Robert Chen",
+    "role": "Administrative Assistant",
+    "specialization": "Patient Coordination",
+    "phone": "(555) 888-9999",
+    "email": "r.chen@mediflow.com",
+    "availability": [
+      {"day": "Monday", "hours": "08:00-17:00"},
+      {"day": "Tuesday", "hours": "08:00-17:00"},
+      {"day": "Wednesday", "hours": "08:00-17:00"},
+      {"day": "Thursday", "hours": "08:00-17:00"},
+      {"day": "Friday", "hours": "08:00-17:00"}
+    ],
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"
+  }
+]
