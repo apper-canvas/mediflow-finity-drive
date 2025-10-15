@@ -4,15 +4,16 @@ import Layout from "@/components/organisms/Layout";
 
 const Dashboard = lazy(() => import("@/components/pages/Dashboard"));
 const Patients = lazy(() => import("@/components/pages/Patients"));
+const PatientDetail = lazy(() => import("@/components/pages/PatientDetail"));
+const PatientForm = lazy(() => import("@/components/pages/PatientForm"));
 const Appointments = lazy(() => import("@/components/pages/Appointments"));
-const Staff = lazy(() => import("@/components/pages/Staff"));
-const Prescriptions = lazy(() => import("@/components/pages/Prescriptions"));
 const AdmissionDischarge = lazy(() => import("@/components/pages/AdmissionDischarge"));
+const Prescriptions = lazy(() => import("@/components/pages/Prescriptions"));
 const Invoices = lazy(() => import("@/components/pages/Invoices"));
 const InvoiceDetail = lazy(() => import("@/components/pages/InvoiceDetail"));
-const CreateInvoice = lazy(() => import("@/components/pages/CreateInvoice"));
+const Staff = lazy(() => import("@/components/pages/Staff"));
 const NotFound = lazy(() => import("@/components/pages/NotFound"));
-const PatientDetail = lazy(() => import("@/components/pages/PatientDetail"));
+
 const mainRoutes = [
   {
     path: "",
@@ -23,11 +24,19 @@ const mainRoutes = [
       </Suspense>
     )
   },
-{
+  {
     path: "patients",
     element: (
       <Suspense fallback={<div>Loading.....</div>}>
         <Patients />
+      </Suspense>
+    )
+  },
+  {
+    path: "patients/new",
+    element: (
+      <Suspense fallback={<div>Loading.....</div>}>
+        <PatientForm />
       </Suspense>
     )
   },
@@ -39,7 +48,15 @@ const mainRoutes = [
       </Suspense>
     )
   },
-{
+  {
+    path: "patients/:id/edit",
+    element: (
+      <Suspense fallback={<div>Loading.....</div>}>
+        <PatientForm />
+      </Suspense>
+    )
+  },
+  {
     path: "appointments",
     element: (
       <Suspense fallback={<div>Loading.....</div>}>
@@ -47,13 +64,13 @@ const mainRoutes = [
       </Suspense>
     )
   },
-{
+  {
     path: "prescriptions",
     element: (
       <Suspense fallback={<div>Loading.....</div>}>
         <Prescriptions />
       </Suspense>
-    ),
+    )
   },
   {
     path: "admissions",
@@ -69,7 +86,7 @@ const mainRoutes = [
       <Suspense fallback={<div>Loading.....</div>}>
         <Invoices />
       </Suspense>
-    ),
+    )
   },
   {
     path: "invoices/:id",
@@ -77,7 +94,7 @@ const mainRoutes = [
       <Suspense fallback={<div>Loading.....</div>}>
         <InvoiceDetail />
       </Suspense>
-    ),
+    )
   },
   {
     path: "invoices/create",
